@@ -1,12 +1,14 @@
 {
   "name": "sparkdash-rail",
   "label": "SparkDash",
-  "description": "DGX Spark GPU dashboard (sparkDash at http://172.24.3.48:5555) as a dashboard tab.",
+  "description": "DGX Spark GPU dashboard (sparkDash) as a dashboard tab, configurable on the Plugins page.",
   "icon": "Activity",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "tab": {
     "path": "/sparkdash",
     "position": "end"
   },
-  "entry": "dist/index.js"
+  "slots": ["plugins:top"],
+  "entry": "dist/index.js",
+  "api": "plugin_api.py"
 }

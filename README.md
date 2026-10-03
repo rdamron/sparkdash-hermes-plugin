@@ -13,7 +13,9 @@ Then open the dashboard and click **SparkDash** in the nav. If the dashboard was
 
 ## Configuration
 
-The sparkDash URL is hardcoded in `dashboard/dist/index.js` (`SPARKDASH_URL`, default `http://172.24.3.48:5555`). Edit that line and refresh the dashboard — plugin bundles are served from disk per request, no rebuild needed.
+**In the dashboard:** Plugins page → **SparkDash** card at the top — set the sparkDash URL (host or full URL, e.g. `172.24.3.49:5555` or `http://172.24.3.48:5555`). Empty = default `http://172.24.3.48:5555`. Saved via the plugin's backend to `~/.hermes/plugin-data/sparkdash-rail/config.json` (the documented per-plugin store — survives updates and removal) and takes effect on the next SparkDash tab load.
+
+The default URL also lives in `dashboard/dist/index.js` (`DEFAULT_URL`) and `dashboard/plugin_api.py` if you want to change the shipped fallback.
 
 ## How it works
 
@@ -31,6 +33,7 @@ Plain, slot-free dashboard plugin: a visible tab at `/sparkdash` whose registere
 plugin.yaml                    # root manifest (name: sparkdash-rail) — used by `hermes plugins install`
 dashboard/manifest.json        # dashboard UI manifest (visible tab, /sparkdash)
 dashboard/dist/index.js        # the plugin bundle (IIFE, no build step)
+dashboard/plugin_api.py        # backend: GET/POST /api/plugins/sparkdash-rail/config
 ```
 
 MIT licensed. Verified against Hermes 0.21.5.
